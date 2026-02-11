@@ -1,3 +1,5 @@
+![CI](https://github.com/OChidubem/job-tracker-api/actions/workflows/tests.yml/badge.svg)
+
 # Job Tracker API 🚀
 
 A FastAPI + SQLModel REST API to track job applications.
