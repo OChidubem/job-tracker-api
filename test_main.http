@@ -1,9 +1,59 @@
 # Test your FastAPI endpoints
 
-GET http://127.0.0.1:8000/
+POST http://127.0.0.1:8000/auth/register
 Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "demo-user",
+  "password": "password123"
+}
+
 ###
 
-GET http://127.0.0.1:8000/hello/User
+POST http://127.0.0.1:8000/auth/login
 Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "demo-user",
+  "password": "password123"
+}
+
 ###
+
+GET http://127.0.0.1:8000/auth/me
+Accept: application/json
+Authorization: Bearer REPLACE_WITH_TOKEN
+
+###
+
+POST http://127.0.0.1:8000/jobs
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer REPLACE_WITH_TOKEN
+
+{
+  "company": "Amazon",
+  "role": "Backend Intern",
+  "status": "Applied",
+  "notes": "Waiting for recruiter reply"
+}
+
+###
+
+# After creating, copy the returned "id" and paste it below:
+GET http://127.0.0.1:8000/jobs/1
+Accept: application/json
+Authorization: Bearer REPLACE_WITH_TOKEN
+
+###
+
+PATCH http://127.0.0.1:8000/jobs/1
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer REPLACE_WITH_TOKEN
+
+{
+  "status": "phone screen"
+}

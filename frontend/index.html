@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="brand-block">
+        <p class="eyebrow">Job Tracker</p>
+        <div class="brand-title">Career Pipeline Hub</div>
+      </div>
+      <nav class="topnav" aria-label="Primary">
+        <button type="button" class="topnav-chip" data-scroll-target="account-section">Accounts</button>
+        <button type="button" class="topnav-chip" data-scroll-target="applications-section">Applications</button>
+        <button type="button" class="topnav-chip" data-scroll-target="insights-section">Insights</button>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="hero-badge-row">
+          <span class="hero-badge">Private workspace</span>
+          <span class="hero-badge">Status tracking</span>
+          <span class="hero-badge">Fast updates</span>
+        </div>
+        <div class="hero-grid">
+          <div>
+            <h1>Organize every application with a cleaner workflow.</h1>
+            <p class="hero-support">
+              Move from wishlist to offer with a dashboard that feels structured, fast, and reliable.
+            </p>
+          </div>
+          <div class="hero-panel">
+            <div class="hero-panel-label">Live signal</div>
+            <div class="hero-panel-value" id="job-count">0 jobs</div>
+            <div class="hero-panel-meta" id="last-refresh">Waiting for first sync</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main class="layout">
+      <section class="card card-auth" id="account-section">
+        <div class="section-heading">
+          <p class="section-kicker">Account</p>
+          <h2>Sign in or create one</h2>
+        </div>
+        <div id="auth-guest">
+          <form id="login-form" class="job-form">
+            <label>
+              <span>Username</span>
+              <input type="text" name="username" autocomplete="username" required>
+            </label>
+            <label>
+              <span>Password</span>
+              <input type="password" name="password" autocomplete="current-password" required>
+            </label>
+            <button type="submit" class="button-primary">Log in</button>
+          </form>
+          <div class="auth-divider">or</div>
+          <form id="register-form" class="job-form">
+            <label>
+              <span>New username</span>
+              <input type="text" name="username" autocomplete="username" required>
+            </label>
+            <label>
+              <span>New password</span>
+              <input type="password" name="password" autocomplete="new-password" required>
+            </label>
+            <button type="submit" class="button-secondary">Create account</button>
+          </form>
+        </div>
+        <div id="auth-user" class="auth-user hidden">
+          <p class="auth-username">Signed in as <strong id="auth-username"></strong></p>
+          <button type="button" class="button-secondary" id="logout-button">Log out</button>
+        </div>
+      </section>
+
+      <section class="card card-form">
+        <div class="section-heading">
+          <p class="section-kicker">Create</p>
+          <h2>Add application</h2>
+        </div>
+        <form id="create-job-form" class="job-form">
+          <label>
+            <span>Company</span>
+            <input type="text" name="company" placeholder="Stripe" required>
+          </label>
+          <label>
+            <span>Role</span>
+            <input type="text" name="role" placeholder="Backend Engineer" required>
+          </label>
+          <label>
+            <span>Status</span>
+            <select name="status" id="create-status"></select>
+          </label>
+          <label class="full-width">
+            <span>Notes</span>
+            <textarea name="notes" rows="4" placeholder="Referral, recruiter, interview notes..."></textarea>
+          </label>
+          <button type="submit" class="button-primary">Save job</button>
+        </form>
+      </section>
+
+      <section class="card card-metrics" id="insights-section">
+        <div class="section-heading">
+          <p class="section-kicker">Overview</p>
+          <h2>Pipeline snapshot</h2>
+        </div>
+        <div class="metrics" id="metrics"></div>
+      </section>
+
+      <section class="card card-list" id="applications-section">
+        <div class="list-header">
+          <div class="section-heading">
+            <p class="section-kicker">Browse</p>
+            <h2>Applications</h2>
+          </div>
+          <div class="list-actions">
+            <button type="button" class="button-secondary" id="refresh-button">Refresh</button>
+          </div>
+        </div>
+
+        <form id="filter-form" class="filters">
+          <label>
+            <span>Status</span>
+            <select name="status" id="filter-status">
+              <option value="">All statuses</option>
+            </select>
+          </label>
+          <label>
+            <span>Company</span>
+            <input type="text" name="company" placeholder="Search company">
+          </label>
+          <label>
+            <span>Role</span>
+            <input type="text" name="role" placeholder="Search role">
+          </label>
+        </form>
+        <div class="filter-actions">
+          <button type="button" class="button-secondary" id="reset-filters-button">Clear filters</button>
+        </div>
+
+        <div id="feedback" class="feedback" aria-live="polite"></div>
+        <div id="jobs-grid" class="jobs-grid"></div>
+      </section>
+    </main>
+  </div>
+
+  <template id="job-card-template">
+    <article class="job-card">
+      <div class="job-card-header">
+        <div>
+          <p class="job-company"></p>
+          <h3 class="job-role"></h3>
+        </div>
+        <button type="button" class="icon-button delete-button" aria-label="Delete job">Delete</button>
+      </div>
+      <div class="job-card-body">
+        <label class="compact-field">
+          <span>Status</span>
+          <select class="status-select"></select>
+        </label>
+        <p class="job-notes"></p>
+      </div>
+      <footer class="job-card-footer">
+        <span class="job-date"></span>
+        <span class="job-updated"></span>
+      </footer>
+    </article>
+  </template>
+
+  <script src="/assets/app.js" defer></script>
+</body>
+</html>
