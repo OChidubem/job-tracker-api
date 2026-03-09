@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bfba6f5-5522-4155-94c9-3363583f0759" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore " beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/job-tracker-api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/job-tracker-api.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_main.http" beforeDir="false" afterPath="$PROJECT_DIR$/test_main.http" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_reproduce_issue.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_reproduce_issue.py" afterDir="false" />
-    </list>
+    <list default="true" id="5bfba6f5-5522-4155-94c9-3363583f0759" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -123,7 +114,7 @@
       <updated>1770786510382</updated>
       <workItem from="1770786511395" duration="12352000" />
       <workItem from="1771563223642" duration="1344000" />
-      <workItem from="1772645521194" duration="4739000" />
+      <workItem from="1772645521194" duration="5101000" />
     </task>
     <servers />
   </component>
