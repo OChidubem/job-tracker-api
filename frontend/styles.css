@@ -207,8 +207,9 @@ h1 {
 
 .layout {
   display: grid;
-  grid-template-columns: 360px minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) 360px;
   gap: 24px;
+  align-items: start;
 }
 
 .card {
@@ -230,16 +231,23 @@ h1 {
 }
 
 .card-auth {
-  grid-column: 1;
+  grid-column: 2;
+  grid-row: 1;
 }
 
 .card-metrics {
   grid-column: 1;
+  grid-row: 1;
 }
 
 .card-list {
+  grid-column: 1;
+  grid-row: 2 / span 2;
+}
+
+.card-form {
   grid-column: 2;
-  grid-row: 1 / span 3;
+  grid-row: 2;
 }
 
 .section-heading {
@@ -493,8 +501,10 @@ textarea {
     grid-template-columns: 1fr;
   }
 
+  .card-auth,
   .card-list,
-  .card-metrics {
+  .card-metrics,
+  .card-form {
     grid-column: auto;
     grid-row: auto;
   }
