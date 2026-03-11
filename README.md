@@ -1,4 +1,4 @@
-# Job Tracker API
+# Job Tracker
 
 Your job hunt deserves better than a messy notes app, twelve open tabs, and vague optimism.
 

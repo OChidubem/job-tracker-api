@@ -293,7 +293,7 @@ async def lifespan(app: FastAPI):
     yield
 
 
-app = FastAPI(title="Job Tracker API", version="1.0.0", lifespan=lifespan)
+app = FastAPI(title="Job Tracker", version="1.0.0", lifespan=lifespan)
 app.mount("/assets", StaticFiles(directory=FRONTEND_DIR), name="assets")
 
 
@@ -308,7 +308,7 @@ def root():
 
 @app.get("/api", tags=["Meta"])
 def api_root():
-    return {"message": "Job Tracker API running"}
+    return {"message": "Job Tracker running"}
 
 
 @app.post("/auth/register", response_model=AuthResponse, tags=["Auth"], status_code=status.HTTP_201_CREATED)
